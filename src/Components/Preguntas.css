@@ -1,0 +1,22 @@
+.Container {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+}
+
+.Card {
+    border: 2px solid;
+    border-color: #006BEC;
+    background-color: #D9D9D9;
+    border-radius: 30px;
+    padding: 20px;
+    width: 300px;
+}
+
+.card-button {
+    margin-top: 0px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px 10px;
+    text-align: center;
+}

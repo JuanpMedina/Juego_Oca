@@ -3,14 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Home from './Home/home';
-import Usuarios from './Usuarios/crud';
-import Preguntas from './Preguntas/preguntas';
-import Retos from './Retos/retos';
+import Inicio from './Homepage/homepage';
+import Home from './Admin/Home/home';
+import Usuarios from './Admin/Usuarios/crud';
+import Preguntas from './Admin/Preguntas/preguntas';
+import Retos from './Admin/Retos/retos';
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Inicio />,
+  },
+  {
+    path: "/home",
     element: <Home />,
   },  
   {

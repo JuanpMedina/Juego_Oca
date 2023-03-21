@@ -11,7 +11,7 @@ import Retos from './Admin/Retos/retos';
 import Pin from './Usuario/Pin/pin'
 import Nombre from './Usuario/Nombre/nombre'
 import Participantes from './Usuario/Participantes/participantes';
-import Juego from './Usuario/Juego/juego';
+import Juego from './Usuario/Juego/app';
 
 const router = createBrowserRouter([
   {

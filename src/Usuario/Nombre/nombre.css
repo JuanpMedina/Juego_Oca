@@ -1,0 +1,57 @@
+body {
+    background-image: url(../Img/fondo.jpg);
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-family: Neuton;
+    font-size: 45px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card {
+    width: 450px;
+    height: 170px;
+    background-color: rgba(217, 217, 217, 0.8);
+    border-color: black;
+    border-radius: 30px;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card input {
+    font-family: Neuton;
+    font-size: 20px;
+    color: black;
+    background-color: white;
+    width: 300px;
+    height: 50px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 15px;
+    border-color: black;
+    margin-bottom: 10px;
+}
+
+.btn {
+    color: white;
+    width: 280px;
+    background-color: black;
+    font-size: 18px;
+    border-radius: 30px;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    color: white;
+}

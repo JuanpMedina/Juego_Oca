@@ -8,6 +8,10 @@ import Home from './Admin/Home/home';
 import Usuarios from './Admin/Usuarios/crud';
 import Preguntas from './Admin/Preguntas/preguntas';
 import Retos from './Admin/Retos/retos';
+import Pin from './Usuario/Pin/pin'
+import Nombre from './Usuario/Nombre/nombre'
+import Participantes from './Usuario/Participantes/participantes';
+import Juego from './Usuario/Juego/juego';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +33,22 @@ const router = createBrowserRouter([
   {
     path: "/retos",
     element: <Retos />,
+  },
+  {
+    path: "/pin",
+    element: <Pin />,
+  },
+  {
+    path: "/nombre",
+    element: <Nombre />,
+  },
+  {
+    path: "/participantes",
+    element: <Participantes />,
+  },
+  {
+    path: "/juego",
+    element: <Juego />,
   }
 ]);
 

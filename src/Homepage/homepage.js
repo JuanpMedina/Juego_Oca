@@ -4,16 +4,13 @@ import './homepage.css';
 function home() {
     return (
         <div className='home'>
-            <main>
-                <div className="Container">
-                    <div className="Card">
-                        <div>
-                            <a className='boton' href=''>Usuario</a>
-                            <a className='boton' href='/home'>Administrador</a>
-                        </div>
-                    </div>
+            <h1>Juego de la Oca</h1>
+            <div className="Card">
+                <div>
+                    <a className='boton' href='/pin'>Usuario</a>
+                    <a className='boton2' href='/home'>Gestor de partida</a>
                 </div>
-            </main>
+            </div>
         </div>
     );
 }

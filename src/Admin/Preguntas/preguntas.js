@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import './names.css';
 import {
     Table,
     Button,
@@ -163,7 +164,7 @@ class App extends React.Component {
 
                     <ModalBody>
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Id:
                             </label>
 
@@ -176,7 +177,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Pregunta:
                             </label>
                             <input
@@ -189,7 +190,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Respuesta Correcta:
                             </label>
                             <input
@@ -202,7 +203,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Opcion 1:
                             </label>
                             <input
@@ -215,7 +216,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Opcion 2:
                             </label>
                             <input
@@ -228,7 +229,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Opcion 3:
                             </label>
                             <input
@@ -241,7 +242,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Tematica:
                             </label>
                             <input
@@ -254,7 +255,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Asignatura:
                             </label>
                             <input
@@ -267,7 +268,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Dificultad:
                             </label>
                             <input
@@ -305,7 +306,7 @@ class App extends React.Component {
 
                     <ModalBody>
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Id:
                             </label>
 
@@ -318,7 +319,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names"> 
                                 Pregunta:
                             </label>
                             <input
@@ -330,7 +331,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Respuesta Correcta:
                             </label>
                             <input
@@ -342,7 +343,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Opcion 1:
                             </label>
                             <input
@@ -354,7 +355,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Opcion 2:
                             </label>
                             <input
@@ -366,7 +367,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Opcion 3:
                             </label>
                             <input
@@ -378,7 +379,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Tematica:
                             </label>
                             <input
@@ -390,7 +391,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Asignatura:
                             </label>
                             <input
@@ -402,7 +403,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Dificultad:
                             </label>
                             <input

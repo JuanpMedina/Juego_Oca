@@ -10,12 +10,13 @@ import {
     FormGroup,
     ModalFooter,
 } from "reactstrap";
+import ExcelToJson from "./boton";
 
 const data = [
-    { id: 1, pregunta: "¿Cuál es el mejor lenguaje de programación?", respuesta: "JavaScript" },
-    { id: 2, pregunta: "Cuanto es 2+10", respuesta: "12" },
-    { id: 3, pregunta: "¿Cuánto es `11`+ 1 en JavaScript?", respuesta: "111" },
-    { id: 4, pregunta: "¿En qué año fue creado JavaScript?", respuesta: "1995" },
+    { id: 1, pregunta: "¿Cuál es el mejor lenguaje de programación?", respuestac: "JavaScript", respuesta1:"PHP", respuesta2:"C++", respuesta3:"Kotlin", tema:"Programacion", asignatura:"Sofware", dificultad:"Facil"},
+    { id: 2, pregunta: "Cuanto es 2+10", respuestac: "12", respuesta1:"11", respuesta2:"9", respuesta3:"1", tema:"Matematicas", asignatura:"Algebra", dificultad:"Facil" },
+    { id: 3, pregunta: "¿Cuánto es `11`+ 1 en JavaScript?", respuestac: "111",respuesta1:"12", respuesta2:"Syntax Error", respuesta3:"`11`1", tema:"Programacion",asignatura:"Sofware", dificultad:"Facil" },
+    { id: 4, pregunta: "¿Cuento es pi?", respuestac: "3.1416", respuesta1:"3", respuesta2:"1", respuesta3:"3.15",tema:"Matematicas", asignatura:"Algebra", dificultad:"Facil"},
 ];
 
 class App extends React.Component {
@@ -26,7 +27,13 @@ class App extends React.Component {
         form: {
             id: "",
             pregunta: "",
-            respuesta: "",
+            respuestac: "",
+            respuesta1: "",
+            respuesta2: "",
+            respuesta3: "",
+            tema: "",
+            asignatura: "",
+            dificultad: "",
         },
     };
 
@@ -57,7 +64,8 @@ class App extends React.Component {
         arreglo.map((registro) => {
             if (dato.id == registro.id) {
                 arreglo[contador].pregunta = dato.pregunta;
-                arreglo[contador].respuesta = dato.respuesta;
+                arreglo[contador].respuestac = dato.respuestac;
+                arreglo[contador].respuesta1 = dato.respuesta1;
             }
             contador++;
         });
@@ -100,17 +108,23 @@ class App extends React.Component {
 
         return (
             <>
+                <br></br>
+                <br></br>
                 <Container>
-                    <br />
                     <Button color="success" onClick={() => this.mostrarModalInsertar()}>Crear</Button>
-                    <br />
-                    <br />
+                    <Button color="success" onClick={() => this.ExcelToJson()}>Insertar Excel</Button>
                     <Table>
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Pregunta</th>
-                                <th>Respuesta</th>
+                                <th>Opcion Correcta</th>
+                                <th>Opcion 1</th>
+                                <th>Opcion 2</th>
+                                <th>Opcion 3</th>
+                                <th>Tematica</th>
+                                <th>Asignatura</th>
+                                <th>Dificultad</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
@@ -120,7 +134,13 @@ class App extends React.Component {
                                 <tr key={dato.id}>
                                     <td>{dato.id}</td>
                                     <td>{dato.pregunta}</td>
-                                    <td>{dato.respuesta}</td>
+                                    <td>{dato.respuestac}</td>
+                                    <td>{dato.respuesta1}</td>
+                                    <td>{dato.respuesta2}</td>
+                                    <td>{dato.respuesta3}</td>
+                                    <td>{dato.tema}</td>
+                                    <td>{dato.asignatura}</td>
+                                    <td>{dato.dificultad}</td>
                                     <td>
                                         <Button
                                             color="primary"
@@ -170,14 +190,92 @@ class App extends React.Component {
 
                         <FormGroup>
                             <label>
-                                Respuesta:
+                                Respuesta Correcta:
                             </label>
                             <input
                                 className="form-control"
-                                name="respuesta"
+                                name="respuestac"
                                 type="text"
                                 onChange={this.handleChange}
-                                value={this.state.form.respuesta}
+                                value={this.state.form.respuestac}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label>
+                                Opcion 1:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="respuesta1"
+                                type="text"
+                                onChange={this.handleChange}
+                                value={this.state.form.respuesta1}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label>
+                                Opcion 2:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="respuesta2"
+                                type="text"
+                                onChange={this.handleChange}
+                                value={this.state.form.respuesta2}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label>
+                                Opcion 3:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="respuesta3"
+                                type="text"
+                                onChange={this.handleChange}
+                                value={this.state.form.respuesta3}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label>
+                                Tematica:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="tema"
+                                type="text"
+                                onChange={this.handleChange}
+                                value={this.state.form.tema}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label>
+                                Asignatura:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="asignatura"
+                                type="text"
+                                onChange={this.handleChange}
+                                value={this.state.form.asignatura}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label>
+                                Dificultad:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="dificultad"
+                                type="text"
+                                onChange={this.handleChange}
+                                value={this.state.form.dificultad}
                             />
                         </FormGroup>
                     </ModalBody>
@@ -233,11 +331,83 @@ class App extends React.Component {
 
                         <FormGroup>
                             <label>
-                                Respuesta:
+                                Respuesta Correcta:
                             </label>
                             <input
                                 className="form-control"
-                                name="respuesta"
+                                name="respuestac"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label>
+                                Opcion 1:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="respuesta1"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label>
+                                Opcion 2:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="respuesta2"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label>
+                                Opcion 3:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="respuesta3"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label>
+                                Tematica:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="tema"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label>
+                                Asignatura:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="asignatura"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label>
+                                Dificultad:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="dificultad"
                                 type="text"
                                 onChange={this.handleChange}
                             />

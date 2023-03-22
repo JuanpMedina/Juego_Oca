@@ -27,12 +27,12 @@ const preguntas = [
         ],
     },
     {
-        titulo: "¿En qué año fue creado JavaScript?",
+        titulo: "¿Cuento es pi?",
         opciones: [
-            { textoRespuesta: "1997", isCorrect: false },
-            { textoRespuesta: "2001", isCorrect: false },
-            { textoRespuesta: "1987", isCorrect: false },
-            { textoRespuesta: "1995", isCorrect: true },
+            { textoRespuesta: "3.15", isCorrect: false },
+            { textoRespuesta: "1", isCorrect: false },
+            { textoRespuesta: "3", isCorrect: false },
+            { textoRespuesta: "3.1416", isCorrect: true },
         ],
     },
 ];

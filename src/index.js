@@ -11,6 +11,7 @@ import Pin from './Usuario/Pin/pin'
 import Nombre from './Usuario/Nombre/nombre'
 import Participantes from './Usuario/Participantes/participantes';
 import Juego from './Usuario/Juego/app';
+import Boton from './Admin/Preguntas/boton'
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: "/juego",
     element: <Juego />,
+  },
+  {
+    path: "/boton",
+    element: <Boton />,
   }
 ]);
 

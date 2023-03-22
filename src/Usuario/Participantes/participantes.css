@@ -27,6 +27,7 @@ body {
 .name-card {
     background-color: rgba(217, 217, 217, 0.555);
     border: 1px solid black;
+    color: black;
     border-radius: 20px;
     font-size: 20px;
     font-family: Neuton;

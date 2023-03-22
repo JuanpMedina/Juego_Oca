@@ -9,12 +9,12 @@ const preguntas = [
         ],
     },
     {
-        titulo: "Con Lasfito aprendes de tutoriales...?",
+        titulo: "Cuanto es 2+10",
         opciones: [
-            { textoRespuesta: "sin contenido", isCorrect: false },
-            { textoRespuesta: "sin relleno", isCorrect: true },
-            { textoRespuesta: "sin gracia :v", isCorrect: false },
-            { textoRespuesta: "sin código", isCorrect: false },
+            { textoRespuesta: "11", isCorrect: false },
+            { textoRespuesta: "12", isCorrect: true },
+            { textoRespuesta: "9", isCorrect: false },
+            { textoRespuesta: "1", isCorrect: false },
         ],
     },
     {

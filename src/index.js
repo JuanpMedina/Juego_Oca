@@ -5,7 +5,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Inicio from './Homepage/homepage';
 import Home from './Admin/Home/home';
-import Usuarios from './Admin/Usuarios/crud';
 import Preguntas from './Admin/Preguntas/preguntas';
 import Retos from './Admin/Retos/retos';
 import Pin from './Usuario/Pin/pin'
@@ -21,10 +20,6 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
-  },  
-  {
-    path: "/usuarios",
-    element: <Usuarios />,
   },
   {
     path: "/preguntas",

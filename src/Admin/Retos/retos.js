@@ -139,7 +139,7 @@ class App extends React.Component {
 
                     <ModalBody>
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Id:
                             </label>
 
@@ -152,7 +152,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Reto:
                             </label>
                             <input
@@ -190,7 +190,7 @@ class App extends React.Component {
 
                     <ModalBody>
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Id:
                             </label>
 
@@ -203,7 +203,7 @@ class App extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <label>
+                            <label className="names">
                                 Reto:
                             </label>
                             <input

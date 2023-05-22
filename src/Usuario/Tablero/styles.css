@@ -1,0 +1,158 @@
+.App {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #000;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #ecf0f1;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% / 9);
+    height: calc(100% / 7);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000;
+    border: 2px solid #000;
+}
+
+.cell:nth-child(9n + 1) {
+    border-left: none;
+}
+
+.cell:nth-child(n + 55) {
+    border-bottom: none;
+}
+
+.player1 {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.player2 {
+    background-color: #2980b9;
+    color: #fff;
+}
+
+.dice {
+    margin-top: 2rem;
+}
+
+.dice button {
+    background-color: #3498db;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dice button:hover {
+    background-color: #2980b9;
+}
+
+.dice-values {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dice-value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid #000;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+    position: relative;
+}
+
+.dice-value.dice1:before {
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dice-value.dice2:before {
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 25%;
+    left: 75%;
+}
+
+.dice-value.dice2:after {
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 25%;
+    right: 25%;
+}
+
+.question {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+
+.question h2 {
+    margin-bottom: 20px;
+    color: black;
+}
+
+.question select {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.question button {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.question .options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000;
+}

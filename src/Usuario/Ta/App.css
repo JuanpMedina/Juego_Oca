@@ -1,0 +1,190 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    /* cambiar de column a row */
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    margin-top: 50px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+.textscore {
+    font-size: 20px;
+}
+
+.square.player1 {
+    background-color: red;
+    /* Color para el jugador 1 */
+}
+
+.square.player2 {
+    background-color: blue;
+    /* Color para el jugador 2 */
+}
+
+
+.titulito {
+    margin-right: 100px;
+}
+
+.acierticos {
+    align-items: center;
+    width: 1000px;
+    height: 180px;
+    background: white;
+    border-radius: 20px;
+    border-color: black;
+}
+
+.card-juego-finalizado {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    margin-top: 10px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(9, 50px);
+    grid-template-rows: repeat(7, 50px);
+    gap: 2px;
+    background-color: #fcf6b1;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 30px !important;
+}
+
+.question {
+    color: black;
+    background: transparent;
+    border-radius: 0%;
+    border-color: transparent;
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    color: #333;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.square.active {
+    background-color: #6c5ce7;
+    color: white;
+}
+
+.square.goose {
+    background-color: #00b894;
+    color: white;
+}
+
+.square.bridge {
+    background-color: #2d3436;
+    color: white;
+}
+
+.square.well {
+    background-color: #fab1a0;
+    color: white;
+}
+
+.square.maze {
+    background-color: #d63031;
+    color: white;
+}
+
+.square.prison {
+    background-color: #636e72;
+    color: white;
+}
+
+.square.death {
+    background-color: #dfe6e9;
+    color: #2d3436;
+}
+
+.square.player {
+    background-color: #d63031;
+    color: white;
+}
+
+.dice-conta {
+    display: flex;
+    justify-content: center;
+}
+
+.dice-container {
+    display: flex;
+    justify-content: center;
+}
+
+.dice {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: black;
+    border: none;
+    border-radius: 10px;
+    margin: 20px;
+    text-align: center;
+    padding: 20px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+
+.game-finished {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-finished-alert {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btnpregunta {
+    margin: 5px !important;
+}
+
+.btnmarcador {
+    background-color: black !important;
+    border-color: black;
+    text-align: center;
+}
+
+
+.dice:hover {
+    cursor: pointer;
+    background-color: black;
+}
+
+@media screen and (max-width: 500px) {
+    .board {
+        grid-template-columns: repeat(7, 50px);
+        grid-template-rows: repeat(9, 50px);
+    }
+}

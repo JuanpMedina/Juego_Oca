@@ -1,18 +1,22 @@
-import React from 'react';
-import './pin.css';
+import React from "react";
+import "./div.css";
+import Pin from "./pin2";
+import SignIn from "../Login/login";
 
-function pin() {
+function App() {
     return (
         <div>
-            <h1>Juego de la Oca</h1>
-            <div className="card">
-                <div className="card-body">
-                    <input type="text" className="form-control" placeholder="PIN de juego" />
-                    <a className="btn" href='/nombre'>Ingresar</a>
+            <div className="App">
+                <div className="left-section">
+                    <Pin />
+                </div>
+                <div className="lineaDivisoria"></div>
+                <div className="right-section">
+                    <SignIn />
                 </div>
             </div>
         </div>
     );
 }
 
-export default pin;
+export default App;

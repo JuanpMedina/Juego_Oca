@@ -1,11 +1,14 @@
 body {
-    background-image: url(./Img/fondo.jpg);
     background-size: cover;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.h1{
+    size: 500px !important;
 }
 
 .Card {
@@ -23,11 +26,10 @@ body {
 
 .boton {
     display: inline-block;
-    color: black;
+    color: white !important;
     width: 200px;
     text-align: center;
     background-color: black;
-    color: white !important;
     font-size: 18px;
     padding: 10px 20px;
     border-radius: 20px !important;
@@ -49,7 +51,7 @@ body {
 }
 
 .boton:hover{
-    color: white;
+    color: white !important;
 }
 
 .boton2:hover{

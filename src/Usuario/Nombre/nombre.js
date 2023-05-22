@@ -1,18 +1,22 @@
-import React from 'react';
-import './nombre.css';
+import React from "react";
+import "./div.css";
+import Nombre from "./nombre2";
+import SignIn from "../Login/login";
 
-function nombre() {
+function App() {
     return (
         <div>
-            <h1>Juego de la Oca</h1>
-            <div className="card">
-                <div className="card-body">
-                    <input type="text" className="form-control" placeholder="Ingrese su Nombre" />
-                    <a className="btn" href='/participantes'>Ingresar</a>
+            <div className="App">
+                <div className="left-section">
+                    <Nombre />
+                </div>
+                <div className="lineaDivisoria"></div>
+                <div className="right-section">
+                    <SignIn />
                 </div>
             </div>
         </div>
     );
 }
 
-export default nombre;
+export default App;

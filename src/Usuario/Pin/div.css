@@ -1,0 +1,27 @@
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.left-section {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline-end: 130px;
+}
+
+.right-section {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline-start: 130px;
+}
+
+.lineaDivisoria {
+    border-left: 2px solid #000;
+    height: 80%;
+}

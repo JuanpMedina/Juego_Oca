@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import './names.css';
+import "./names.css";
 import {
     Table,
     Button,
@@ -62,6 +62,7 @@ const data = [
 class App extends React.Component {
     state = {
         data: data,
+        modalEditar: false,
         modalActualizar: false,
         modalInsertar: false,
         form: {
@@ -78,6 +79,16 @@ class App extends React.Component {
         opcionesDificultad: ["Fácil", "Medio", "Difícil"],
     };
 
+    mostrarModalEditar = (dato) => {
+        this.setState({
+            form: dato,
+            modalEditar: true,
+        });
+    };
+
+    cerrarModalEditar = () => {
+        this.setState({ modalEditar: false });
+    };
 
     mostrarModalActualizar = (dato) => {
         this.setState({
@@ -127,9 +138,8 @@ class App extends React.Component {
             }
             contador++;
         });
-        this.setState({ data: arreglo, modalActualizar: false });
+        this.setState({ data: arreglo, modalEditar: false });
     };
-
 
     eliminar = (dato) => {
         var opcion = window.confirm("Estás Seguro que deseas Eliminar el elemento " + dato.id);
@@ -221,48 +231,24 @@ class App extends React.Component {
     };
 
     render() {
-
         return (
             <>
-                <br></br>
-                <br></br>
+                <Button color="success" onClick={() => this.mostrarModalInsertar()}>Crear nueva pregunta</Button>
                 <Container>
-                    <Button
-                        color="success"
-                        onClick={() =>
-                            this.mostrarModalEditar({
-                                id: "",
-                                pregunta: "",
-                                respuestac: "",
-                                respuesta1: "",
-                                respuesta2: "",
-                                respuesta3: "",
-                                tema: "",
-                                asignatura: "",
-                                dificultad: "",
-                            })
-                        }
-                    >
-                        Agregar Pregunta
-                    </Button>
-                    <Button color="success" onClick={() => this.mostrarModalInsertar()}>Crear</Button>
-                    <Button color="success" onClick={() => this.ExcelToJson()}>Insertar Excel</Button>
                     <Table>
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Pregunta</th>
-                                <th>Opcion Correcta</th>
-                                <th>Opcion 1</th>
-                                <th>Opcion 2</th>
-                                <th>Opcion 3</th>
-                                <th>Tematica</th>
+                                <th>Respuesta Correcta</th>
+                                <th>Respuesta 1</th>
+                                <th>Respuesta 2</th>
+                                <th>Respuesta 3</th>
+                                <th>Tema</th>
                                 <th>Asignatura</th>
                                 <th>Dificultad</th>
-                                <th>Acción</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             {this.state.data.map((dato) => (
                                 <tr key={dato.id} className="editable-field"
@@ -276,32 +262,21 @@ class App extends React.Component {
                                     <td>{dato.tema}</td>
                                     <td>{dato.asignatura}</td>
                                     <td>{dato.dificultad}</td>
-                                    <td>
-                                        <Button
-                                            color="primary"
-                                            onClick={() => this.mostrarModalActualizar(dato)}
-                                        >
-                                            Editar
-                                        </Button>{" "}
-                                        <Button color="danger" onClick={() => this.eliminar(dato)}>Eliminar</Button>
-                                    </td>
                                 </tr>
                             ))}
                         </tbody>
                     </Table>
                 </Container>
 
-                <Modal isOpen={this.state.modalActualizar}>
+                <Modal isOpen={this.state.modalEditar}>
                     <ModalHeader>
-                        <div><h3>Editar Registro</h3></div>
+                        <div>
+                            <h3>Editar Pregunta</h3>
+                        </div>
                     </ModalHeader>
-
                     <ModalBody>
                         <FormGroup>
-                            <label className="names">
-                                Id:
-                            </label>
-
+                            <label className="names">ID:</label>
                             <input
                                 className="form-control"
                                 readOnly
@@ -309,11 +284,8 @@ class App extends React.Component {
                                 value={this.state.form.id}
                             />
                         </FormGroup>
-
                         <FormGroup>
-                            <label className="names">
-                                Pregunta:
-                            </label>
+                            <label className="names">Pregunta:</label>
                             <input
                                 className="form-control"
                                 name="pregunta"
@@ -322,11 +294,8 @@ class App extends React.Component {
                                 value={this.state.form.pregunta}
                             />
                         </FormGroup>
-
                         <FormGroup>
-                            <label className="names">
-                                Respuesta Correcta:
-                            </label>
+                            <label className="names">Respuesta Correcta:</label>
                             <input
                                 className="form-control"
                                 name="respuestac"
@@ -335,11 +304,8 @@ class App extends React.Component {
                                 value={this.state.form.respuestac}
                             />
                         </FormGroup>
-
                         <FormGroup>
-                            <label className="names">
-                                Opcion 1:
-                            </label>
+                            <label className="names">Respuesta 1:</label>
                             <input
                                 className="form-control"
                                 name="respuesta1"
@@ -348,11 +314,8 @@ class App extends React.Component {
                                 value={this.state.form.respuesta1}
                             />
                         </FormGroup>
-
                         <FormGroup>
-                            <label className="names">
-                                Opcion 2:
-                            </label>
+                            <label className="names">Respuesta 2:</label>
                             <input
                                 className="form-control"
                                 name="respuesta2"
@@ -361,11 +324,8 @@ class App extends React.Component {
                                 value={this.state.form.respuesta2}
                             />
                         </FormGroup>
-
                         <FormGroup>
-                            <label className="names">
-                                Opcion 3:
-                            </label>
+                            <label className="names">Respuesta 3:</label>
                             <input
                                 className="form-control"
                                 name="respuesta3"
@@ -374,11 +334,8 @@ class App extends React.Component {
                                 value={this.state.form.respuesta3}
                             />
                         </FormGroup>
-
                         <FormGroup>
-                            <label className="names">
-                                Tematica:
-                            </label>
+                            <label className="names">Tema:</label>
                             <input
                                 className="form-control"
                                 name="tema"
@@ -387,11 +344,8 @@ class App extends React.Component {
                                 value={this.state.form.tema}
                             />
                         </FormGroup>
-
                         <FormGroup>
-                            <label className="names">
-                                Asignatura:
-                            </label>
+                            <label className="names">Asignatura:</label>
                             <input
                                 className="form-control"
                                 name="asignatura"
@@ -400,43 +354,24 @@ class App extends React.Component {
                                 value={this.state.form.asignatura}
                             />
                         </FormGroup>
-
                         <FormGroup>
                             <label className="names">Dificultad:</label>
-                            <select
+                            <input
                                 className="form-control"
                                 name="dificultad"
+                                type="text"
                                 onChange={this.handleChange}
                                 value={this.state.form.dificultad}
-                            >
-                                {this.state.opcionesDificultad.map((opcion) => (
-                                    <option key={opcion} value={opcion}>
-                                        {opcion}
-                                    </option>
-                                ))}
-                            </select>
+                            />
                         </FormGroup>
-
                     </ModalBody>
-
                     <ModalFooter>
-                        <Button
-                            color="primary"
-                            onClick={() => this.editar(this.state.form)}
-                        >
-                            Editar
+                        <Button color="primary" onClick={() => this.editar(this.state.form)}>
+                            Guardar
                         </Button>
-                        <Button
-                            color="danger"
-                            onClick={() => this.cerrarModalActualizar()}
-                        >
-                            Cancelar
-                        </Button>
+                        <Button color="danger" onClick={() => this.eliminar(this.state.form)}>Eliminar</Button>
                     </ModalFooter>
                 </Modal>
-
-
-
                 <Modal isOpen={this.state.modalInsertar}>
                     <ModalHeader>
                         <div><h3>Insertar Pregunta</h3></div>
@@ -576,4 +511,5 @@ class App extends React.Component {
         );
     }
 }
+
 export default App;

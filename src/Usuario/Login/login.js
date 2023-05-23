@@ -106,7 +106,7 @@ export default function SignIn() {
                         type="submit"
                         fullWidth
                         component={RouterLink}
-                        to="/home"
+                        to="/navbar"
                         variant="contained"
                         color="primary"
                         className={classes.submit}

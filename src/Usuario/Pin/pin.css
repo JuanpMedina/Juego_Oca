@@ -8,12 +8,24 @@ body {
     justify-content: center;
 }
 
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+}
+
 .iconos {
-    font-size: 40px; /* Tamaño deseado para el icono */
+    margin: 0 10px;
+}
+
+
+.iconos {
+    font-size: 40px;
+    /* Tamaño deseado para el icono */
     color: black;
 }
 
-.tit{
+.tit {
     font-size: 30px;
 }
 
@@ -97,5 +109,6 @@ h1 {
 }
 
 .btn:hover {
-    color: white;
+    color: white !important;
+    background-color: black !important;
 }

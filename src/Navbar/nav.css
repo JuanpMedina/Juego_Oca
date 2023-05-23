@@ -11,6 +11,19 @@
 .custom-navbar .navbar-nav .nav-link {
     padding: 10px 15px;
     /* Ajusta el valor del padding según tus necesidades */
-    font-size: 20px;
+    font-size: 18px;
     /* Ajusta el tamaño de fuente según tus necesidades */
+}
+.custom-dropdown{
+    color: white;
+}
+
+.custom-dropdown .dropdown-menu {
+    left: auto !important;
+    right: 0 !important;
+}
+
+.custom-dropdown .dropdown-menu:before {
+    left: auto !important;
+    right: 10px !important;
 }

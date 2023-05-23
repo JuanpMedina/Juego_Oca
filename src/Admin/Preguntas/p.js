@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./names.css";
+import './names.css';
 import {
     Table,
     Button,
@@ -62,7 +62,8 @@ const data = [
 class App extends React.Component {
     state = {
         data: data,
-        modalEditar: false,
+        modalActualizar: false,
+        modalInsertar: false,
         form: {
             id: "",
             pregunta: "",
@@ -74,6 +75,29 @@ class App extends React.Component {
             asignatura: "",
             dificultad: "",
         },
+        opcionesDificultad: ["Fácil", "Medio", "Difícil"],
+    };
+
+
+    mostrarModalActualizar = (dato) => {
+        this.setState({
+            form: dato,
+            modalActualizar: true,
+        });
+    };
+
+    cerrarModalActualizar = () => {
+        this.setState({ modalActualizar: false });
+    };
+
+    mostrarModalInsertar = () => {
+        this.setState({
+            modalInsertar: true,
+        });
+    };
+
+    cerrarModalInsertar = () => {
+        this.setState({ modalInsertar: false });
     };
 
     mostrarModalEditar = (dato) => {
@@ -103,25 +127,32 @@ class App extends React.Component {
             }
             contador++;
         });
-        this.setState({ data: arreglo, modalEditar: false });
+        this.setState({ data: arreglo, modalActualizar: false });
     };
 
+
     eliminar = (dato) => {
-        var opcion = window.confirm(
-            "¿Estás seguro que deseas eliminar la pregunta con ID " + dato.id + "?"
-        );
-        if (opcion) {
+        var opcion = window.confirm("Estás Seguro que deseas Eliminar el elemento " + dato.id);
+        if (opcion == true) {
             var contador = 0;
             var arreglo = this.state.data;
             arreglo.map((registro) => {
-                if (dato.id === registro.id) {
+                if (dato.id == registro.id) {
                     arreglo.splice(contador, 1);
                 }
                 contador++;
             });
-            this.setState({ data: arreglo });
+            this.setState({ data: arreglo, modalActualizar: false });
         }
     };
+
+    insertar = () => {
+        var valorNuevo = { ...this.state.form };
+        valorNuevo.id = this.state.data.length + 1;
+        var lista = this.state.data;
+        lista.push(valorNuevo);
+        this.setState({ modalInsertar: false, data: lista });
+    }
 
     handleChange = (e) => {
         this.setState({
@@ -190,41 +221,47 @@ class App extends React.Component {
     };
 
     render() {
+
         return (
             <>
-                <Button
-                    color="success"
-                    onClick={() =>
-                        this.mostrarModalEditar({
-                            id: "",
-                            pregunta: "",
-                            respuestac: "",
-                            respuesta1: "",
-                            respuesta2: "",
-                            respuesta3: "",
-                            tema: "",
-                            asignatura: "",
-                            dificultad: "",
-                        })
-                    }
-                >
-                    Agregar Pregunta
-                </Button>
+                <br></br>
+                <br></br>
                 <Container>
+                    <Button
+                        color="success"
+                        onClick={() =>
+                            this.mostrarModalEditar({
+                                id: "",
+                                pregunta: "",
+                                respuestac: "",
+                                respuesta1: "",
+                                respuesta2: "",
+                                respuesta3: "",
+                                tema: "",
+                                asignatura: "",
+                                dificultad: "",
+                            })
+                        }
+                    >
+                        Agregar Pregunta
+                    </Button>
+                    <Button color="success" onClick={() => this.mostrarModalInsertar()}>Crear</Button>
                     <Table>
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Pregunta</th>
-                                <th>Respuesta Correcta</th>
-                                <th>Respuesta 1</th>
-                                <th>Respuesta 2</th>
-                                <th>Respuesta 3</th>
-                                <th>Tema</th>
+                                <th>Opcion Correcta</th>
+                                <th>Opcion 1</th>
+                                <th>Opcion 2</th>
+                                <th>Opcion 3</th>
+                                <th>Tematica</th>
                                 <th>Asignatura</th>
                                 <th>Dificultad</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             {this.state.data.map((dato) => (
                                 <tr key={dato.id} className="editable-field"
@@ -238,21 +275,32 @@ class App extends React.Component {
                                     <td>{dato.tema}</td>
                                     <td>{dato.asignatura}</td>
                                     <td>{dato.dificultad}</td>
+                                    <td>
+                                        <Button
+                                            color="primary"
+                                            onClick={() => this.mostrarModalActualizar(dato)}
+                                        >
+                                            Editar
+                                        </Button>{" "}
+                                        <Button color="danger" onClick={() => this.eliminar(dato)}>Eliminar</Button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
                     </Table>
                 </Container>
 
-                <Modal isOpen={this.state.modalEditar}>
+                <Modal isOpen={this.state.modalActualizar}>
                     <ModalHeader>
-                        <div>
-                            <h3>Editar Pregunta</h3>
-                        </div>
+                        <div><h3>Editar Registro</h3></div>
                     </ModalHeader>
+
                     <ModalBody>
                         <FormGroup>
-                            <label className="names">ID:</label>
+                            <label className="names">
+                                Id:
+                            </label>
+
                             <input
                                 className="form-control"
                                 readOnly
@@ -260,8 +308,11 @@ class App extends React.Component {
                                 value={this.state.form.id}
                             />
                         </FormGroup>
+
                         <FormGroup>
-                            <label className="names">Pregunta:</label>
+                            <label className="names">
+                                Pregunta:
+                            </label>
                             <input
                                 className="form-control"
                                 name="pregunta"
@@ -270,8 +321,11 @@ class App extends React.Component {
                                 value={this.state.form.pregunta}
                             />
                         </FormGroup>
+
                         <FormGroup>
-                            <label className="names">Respuesta Correcta:</label>
+                            <label className="names">
+                                Respuesta Correcta:
+                            </label>
                             <input
                                 className="form-control"
                                 name="respuestac"
@@ -280,8 +334,11 @@ class App extends React.Component {
                                 value={this.state.form.respuestac}
                             />
                         </FormGroup>
+
                         <FormGroup>
-                            <label className="names">Respuesta 1:</label>
+                            <label className="names">
+                                Opcion 1:
+                            </label>
                             <input
                                 className="form-control"
                                 name="respuesta1"
@@ -290,8 +347,11 @@ class App extends React.Component {
                                 value={this.state.form.respuesta1}
                             />
                         </FormGroup>
+
                         <FormGroup>
-                            <label className="names">Respuesta 2:</label>
+                            <label className="names">
+                                Opcion 2:
+                            </label>
                             <input
                                 className="form-control"
                                 name="respuesta2"
@@ -300,8 +360,11 @@ class App extends React.Component {
                                 value={this.state.form.respuesta2}
                             />
                         </FormGroup>
+
                         <FormGroup>
-                            <label className="names">Respuesta 3:</label>
+                            <label className="names">
+                                Opcion 3:
+                            </label>
                             <input
                                 className="form-control"
                                 name="respuesta3"
@@ -310,8 +373,11 @@ class App extends React.Component {
                                 value={this.state.form.respuesta3}
                             />
                         </FormGroup>
+
                         <FormGroup>
-                            <label className="names">Tema:</label>
+                            <label className="names">
+                                Tematica:
+                            </label>
                             <input
                                 className="form-control"
                                 name="tema"
@@ -320,8 +386,11 @@ class App extends React.Component {
                                 value={this.state.form.tema}
                             />
                         </FormGroup>
+
                         <FormGroup>
-                            <label className="names">Asignatura:</label>
+                            <label className="names">
+                                Asignatura:
+                            </label>
                             <input
                                 className="form-control"
                                 name="asignatura"
@@ -330,22 +399,174 @@ class App extends React.Component {
                                 value={this.state.form.asignatura}
                             />
                         </FormGroup>
+
                         <FormGroup>
                             <label className="names">Dificultad:</label>
-                            <input
+                            <select
                                 className="form-control"
                                 name="dificultad"
-                                type="text"
                                 onChange={this.handleChange}
                                 value={this.state.form.dificultad}
+                            >
+                                {this.state.opcionesDificultad.map((opcion) => (
+                                    <option key={opcion} value={opcion}>
+                                        {opcion}
+                                    </option>
+                                ))}
+                            </select>
+                        </FormGroup>
+
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button
+                            color="primary"
+                            onClick={() => this.editar(this.state.form)}
+                        >
+                            Editar
+                        </Button>
+                        <Button
+                            color="danger"
+                            onClick={() => this.cerrarModalActualizar()}
+                        >
+                            Cancelar
+                        </Button>
+                    </ModalFooter>
+                </Modal>
+
+
+
+                <Modal isOpen={this.state.modalInsertar}>
+                    <ModalHeader>
+                        <div><h3>Insertar Pregunta</h3></div>
+                    </ModalHeader>
+
+                    <ModalBody>
+                        <FormGroup>
+                            <label className="names">
+                                Id:
+                            </label>
+
+                            <input
+                                className="form-control"
+                                readOnly
+                                type="text"
+                                value={this.state.data.length + 1}
                             />
                         </FormGroup>
+
+                        <FormGroup>
+                            <label className="names">
+                                Pregunta:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="pregunta"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label className="names">
+                                Respuesta Correcta:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="respuestac"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label className="names">
+                                Opcion 1:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="respuesta1"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label className="names">
+                                Opcion 2:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="respuesta2"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label className="names">
+                                Opcion 3:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="respuesta3"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label className="names">
+                                Tematica:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="tema"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label className="names">
+                                Asignatura:
+                            </label>
+                            <input
+                                className="form-control"
+                                name="asignatura"
+                                type="text"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <label className="names">Dificultad:</label>
+                            <select
+                                className="form-control"
+                                name="dificultad"
+                                onChange={this.handleChange}
+                            >
+                                {this.state.opcionesDificultad.map((opcion) => (
+                                    <option key={opcion} value={opcion}>
+                                        {opcion}
+                                    </option>
+                                ))}
+                            </select>
+                        </FormGroup>
+
                     </ModalBody>
+
                     <ModalFooter>
-                        <Button color="primary" onClick={() => this.editar(this.state.form)}>
-                            Guardar
+                        <Button
+                            color="primary"
+                            onClick={() => this.insertar()}
+                        >
+                            Insertar
                         </Button>
-                        <Button color="danger" onClick={() => this.cerrarModalEditar()}>
+                        <Button
+                            className="btn btn-danger"
+                            onClick={() => this.cerrarModalInsertar()}
+                        >
                             Cancelar
                         </Button>
                     </ModalFooter>
@@ -354,5 +575,4 @@ class App extends React.Component {
         );
     }
 }
-
 export default App;

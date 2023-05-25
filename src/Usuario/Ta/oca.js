@@ -134,6 +134,7 @@ function App() {
 
 	return (
 		<div>
+			<div>
 			<h1 className='titulito'>Juego de la Oca</h1>
 			<div className="score-table">
 				<table>
@@ -165,7 +166,6 @@ function App() {
 				<img src={colorJugador} alt="Avatar del jugador" />
 				<p>{jugador}</p>
 			</div>
-
 				<div className="container">
 					<div className="lista-dados">
 						<img src={dices[dice1]} className={rodando ? 'rotate' : ''} />
@@ -245,9 +245,7 @@ function App() {
 					)}
 				</div>
 			</div>
-
 		</div>
-
 	);
 }
 

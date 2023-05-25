@@ -162,7 +162,7 @@ class App extends React.Component {
     render() {
         return (
             <>
-                <Button color="success" onClick={() => this.mostrarModalInsertar()}>Crear nuevo Castigo</Button>
+                <Button className="custom-button" color="success" onClick={() => this.mostrarModalInsertar()}>Crear nuevo Castigo</Button>
                 <Container>
                     <Table>
                         <thead>

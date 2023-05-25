@@ -19,6 +19,11 @@ body {
     margin-bottom: 20px;
 }
 
+.t1{
+    text-align: center;
+    margin-left: 220px;
+}
+
 .name-cards {
     display: flex;
     flex-wrap: wrap;

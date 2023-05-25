@@ -12,6 +12,7 @@ import Oca from './Usuario/Ta/oca'
 import Login from './Usuario/Login/login'
 import Navbar from './Navbar/navbar'
 import Preg from './Admin/Preguntas/preg'
+import Partida from './Admin/Partida/partida'
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/navbar",
     element: <Navbar />,
+  },
+  {
+    path: "/partida",
+    element: <Partida />,
   }, 
   {
     path: "/preg",

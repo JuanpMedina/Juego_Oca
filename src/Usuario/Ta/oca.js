@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { questions } from './questions';
-import './App.css';	
+import './App.css';
 
 function App() {
 	const [players, setPlayers] = useState([0, 0]);
@@ -166,52 +166,59 @@ function App() {
 				<p>{jugador}</p>
 			</div>
 
-			<div className="container">
-				<div className="lista-dados">
-					<img src={dices[dice1]} className={rodando ? 'rotate' : ''} />
-					<img src={dices[dice2]} className={rodando ? 'rotate' : ''} />
-					<div className="boton-girar">
-						<button className="button-roll" onClick={handleRollDice}>LANZAR</button>
+				<div className="container">
+					<div className="lista-dados">
+						<img src={dices[dice1]} className={rodando ? 'rotate' : ''} />
+						<img src={dices[dice2]} className={rodando ? 'rotate' : ''} />
+						<div className="boton-girar">
+							<button className="button-roll" onClick={handleRollDice}>LANZAR</button>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div className="board">
-				{Array.from({ length: 63 }, (_, i) => i + 1).map((number) => {
-					return renderSquare(number, number);
-				})}
-			</div>
-			<div>
-				{isGameFinished && (
-					<div className="game-finished">
-						<div className="game-finished-alert">
-							<h1>Juego Terminado!</h1>
-							<h1 className='textscore'>El puntaje del participante 1: {scorePlayer1}</h1>
-							<h1 className='textscore'>El puntaje del participante 2: {scorePlayer2}</h1>
+				<div className="board">
+					{Array.from({ length: 63 }, (_, i) => i + 1).map((number) => {
+						return renderSquare(number, number);
+					})}
+				</div>
+				<div>
+					{isGameFinished && (
+						<div className="game-finished">
+							<div className="game-finished-alert">
+								<h1>Juego Terminado!</h1>
+								<h1 className='textscore'>El puntaje del participante 1: {scorePlayer1}</h1>
+								<h1 className='textscore'>El puntaje del participante 2: {scorePlayer2}</h1>
+							</div>
 						</div>
-					</div>
-				)}
-			</div>
-			<div>
-				{mostrarJuegoFinalizado && (
-					<div className="game-finished">
-						<div className="game-finished-alert">
-							<h1>Aciertos por persona</h1>
-							<h1 className='textscore'>Los aciertos del participante 1: {aciertosPlayer1}</h1>
-							<h1 className='textscore'>Los aciertos del participante 2: {aciertosPlayer2}</h1>
+					)}
+				</div>
+				<div>
+					{mostrarJuegoFinalizado && (
+						<div className="game-finished">
+							<div className="game-finished-alert">
+								<h1>Aciertos por persona</h1>
+								<h1 className='textscore'>Los aciertos del participante 1: {aciertosPlayer1}</h1>
+								<h1 className='textscore'>Los aciertos del participante 2: {aciertosPlayer2}</h1>
+							</div>
 						</div>
-					</div>
-				)}
-			</div>
-			<div>
-				{gameFinished && (
-					<div className="game-finished">
-						<div className="game-finished-alert">
-							<h1>Juego Terminado!</h1>
-							<button className='btnmarcador' onClick={() => setIsGameFinished(false)}>Mostrar Marcador</button>
+					)}
+				</div>
+				<div>
+					{gameFinished && (
+						<div className="game-finished">
+							<div className="game-finished-alert">
+								<h1>Juego Terminado!</h1>
+								<button className='btnmarcador' onClick={() => setIsGameFinished(false)}>Mostrar Marcador</button>
+							</div>
 						</div>
-					</div>
-				)}
+					)}
+				</div>
 			</div>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
 			<div className="page-container">
 				<div className="clquestions">
 					<div className="question-container">
@@ -220,17 +227,17 @@ function App() {
 					{question && (
 						<div className="options-container">
 							<button className ='boton-girar'
-							key={0} 
+							key={0}
 							onClick={() => handleAnswerQuestion(options[0])} disabled={buttonsDisabled}>
 								{options[0]}
 							</button>
 							<button className ='boton-girar'
-							key={1} 
+							key={1}
 							onClick={() => handleAnswerQuestion(options[1])} disabled={buttonsDisabled}>
 								{options[1]}
 							</button>
 							<button className ='boton-girar'
-							key={2} 
+							key={2}
 							onClick={() => handleAnswerQuestion(options[2])} disabled={buttonsDisabled}>
 								{options[2]}
 							</button>

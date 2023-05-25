@@ -1,0 +1,51 @@
+.admin-card {
+    /* Estilos para el contenedor del card */
+}
+
+.admin-card__title {
+    /* Estilos para el título */
+}
+
+.form-group {
+    margin-bottom: 10px;
+    /* Espacio entre los elementos */
+}
+
+.form-group__label {
+    display: block;
+    /* Mostrar las etiquetas en una línea separada */
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group__btn {
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+.input-group__btn:hover {
+    background-color: #f2f2f2;
+}
+
+.input-group__input {
+    background: none;
+    border: none;
+    text-align: center;
+}
+
+.admin-card__submit-btn {
+    /* Estilos para el botón de submit */
+}

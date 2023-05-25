@@ -4,7 +4,7 @@ import './participantes.css';
 function participantes() {
     return (
         <div>
-            <h1>Juego de la Oca</h1>
+            <h1 className='t1'>Juego de la Oca</h1>
             <div className="card1">Pin: 2134432</div>
             <div className="name-cards">
                 <div className="name-card">Juan Pablo</div>

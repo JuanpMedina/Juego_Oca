@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { questions } from './questions';
-import './App.css';
+import './App.css';	
 
 function App() {
 	const [players, setPlayers] = useState([0, 0]);
@@ -30,6 +30,7 @@ function App() {
 	]
 
 	let jugador = currentPlayer === 0 ? "Jugador 1" : "Jugador 2"
+	let colorJugador = currentPlayer === 0 ? "fichaVerde.png" : "fichaVioleta.png"
 
 	const handleGameFinished = () => {
 		setIsGameFinished(true);
@@ -81,11 +82,8 @@ function App() {
 			movePlayer(currentPlayer, -2); // Se resta 2 casillas en caso de respuesta incorrecta
 			setCurrentPlayer(currentPlayer === 0 ? 1 : 0);
 		}
-		jugador = currentPlayer === 0 ? "Jugador 1" : "Jugador 2"
-
-
-		//setUsedQuestions([]);
-		//setQuestion("");
+		jugador = currentPlayer === 0 ? "Jugador 1" : "Jugador 2";
+		colorJugador = currentPlayer === 0 ? "fichaVerde.png" : "fichaVioleta.png";
 	};
 
 
@@ -164,7 +162,7 @@ function App() {
 				</div>
 			</div>
 			<div className="player-info">
-				<img src={'logo512.png'} alt="Avatar del jugador" />
+				<img src={colorJugador} alt="Avatar del jugador" />
 				<p>{jugador}</p>
 			</div>
 
@@ -221,13 +219,19 @@ function App() {
 					</div>
 					{question && (
 						<div className="options-container">
-							<button className='boton-girar' key={0} onClick={() => handleAnswerQuestion(options[0])} disabled={buttonsDisabled}>
+							<button className ='boton-girar'
+							key={0} 
+							onClick={() => handleAnswerQuestion(options[0])} disabled={buttonsDisabled}>
 								{options[0]}
 							</button>
-							<button className='boton-girar' key={1} onClick={() => handleAnswerQuestion(options[1])} disabled={buttonsDisabled}>
+							<button className ='boton-girar'
+							key={1} 
+							onClick={() => handleAnswerQuestion(options[1])} disabled={buttonsDisabled}>
 								{options[1]}
 							</button>
-							<button className='boton-girar' key={2} onClick={() => handleAnswerQuestion(options[2])} disabled={buttonsDisabled}>
+							<button className ='boton-girar'
+							key={2} 
+							onClick={() => handleAnswerQuestion(options[2])} disabled={buttonsDisabled}>
 								{options[2]}
 							</button>
 						</div>

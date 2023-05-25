@@ -17,7 +17,7 @@ function pin() {
             <div className="card">
                 <div className="card-body">
                     <input type="text" className="form-control" placeholder="Ingrese su nombre" />
-                    <a className="btn" href='/participantes'>
+                    <a className="btn" href='/oca'>
                         INGRESAR
                     </a>
                 </div>

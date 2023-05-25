@@ -29,14 +29,9 @@ export const questions = [
         answer: "Brendan Eich"
     },
     {
-        question: "¿Cuál es el valor de verdad de la expresión '10 > 5 && 8 < 2'?",
-        options: ["Verdadero", "Falso"],
-        answer: "Falso"
-    },
-    {
-        question: "¿Qué palabra clave se utiliza para declarar una variable en JavaScript?",
-        options: ["var", "let", "const"],
-        answer: "var"
+        question: "¿Qué palabra clave se utiliza para declarar una variable mutable en JavaScript?",
+        options: ["def", "let", "const"],
+        answer: "let"
     },
     {
         question: "¿Cuál es el resultado de la expresión '3' + 4 + 5?",
@@ -54,14 +49,14 @@ export const questions = [
         answer: "push()"
     },
     {
-        question: "¿Cuál es el valor de verdad de la expresión '10 === '10'?",
-        options: ["Verdadero", "Falso"],
+        question: "¿Cuál es el valor resultante de la expresión '10 === '10'?",
+        options: ["Verdadero", "Falso", "null"],
         answer: "Falso"
     },
     {
         question: "¿Qué método se utiliza para buscar un elemento en un array en JavaScript?",
-        options: ["indexOf()", "find()", "search()"],
-        answer: "indexOf()"
+        options: ["Key()", "find()", "search()"],
+        answer: "find()"
     },
     {
         question: "¿Cuál es la sintaxis correcta para una función en JavaScript?",
@@ -69,7 +64,7 @@ export const questions = [
         answer: "function myFunction()"
     },
     {
-        question: "¿Qué método se utiliza para convertir un string en un número en JavaScript?",
+        question: "¿Qué método se utiliza para convertir un número en formato string a número en JavaScript?",
         options: ["parseInt()", "toString()", "toFixed()"],
         answer: "parseInt()"
     },

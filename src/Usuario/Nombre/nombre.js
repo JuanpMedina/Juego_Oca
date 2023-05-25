@@ -10,10 +10,10 @@ function App() {
                 <div className="left-section">
                     <Nombre />
                 </div>
-                <div className="lineaDivisoria"></div>
+{/*                 <div className="lineaDivisoria"></div>
                 <div className="right-section">
                     <SignIn />
-                </div>
+                </div> */}
             </div>
         </div>
     );

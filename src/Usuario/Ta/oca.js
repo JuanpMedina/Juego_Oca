@@ -37,7 +37,7 @@ function App() {
 		setUsedQuestions([]);
 	};
 
-	const handleRollDice = useCallback(() => {
+	const handleRollDice = useCallback(async () => {
 		setRodando(true);
 		// Generar un nuevo par de dados
 		const d1 = Math.floor(Math.random() * 5) + 1;
@@ -62,7 +62,7 @@ function App() {
 		setUsedQuestions([...usedQuestions, randomQuestion]);
 
 		setButtonsDisabled(false);
-	});
+	}, [usedQuestions]);
 
 	const handleAnswerQuestion = (answer) => {
 		const currentQuestion = questions.find((q) => q.question === question);
@@ -135,37 +135,37 @@ function App() {
 	return (
 		<div>
 			<div>
-			<h1 className='titulito'>Juego de la Oca</h1>
-			<div className="score-table">
-				<table>
-					<thead>
-						<tr>
-							<th>Jugador</th>
-							<th>Puntaje</th>
-							<th>Aciertos</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Jugador 1</td>
-							<td>{scorePlayer1}</td>
-							<td>{aciertosPlayer1}</td>
-						</tr>
-						<tr>
-							<td>Jugador 2</td>
-							<td>{scorePlayer2}</td>
-							<td>{aciertosPlayer2}</td>
-						</tr>
-					</tbody>
-				</table>
-				<div className="boton-girar">
-					<button onClick={handleGameFinished}>Terminar Juego</button>
+				<h1 className='titulito'>Juego de la Oca</h1>
+				<div className="score-table">
+					<table>
+						<thead>
+							<tr>
+								<th>Jugador</th>
+								<th>Puntaje</th>
+								<th>Aciertos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Jugador 1</td>
+								<td>{scorePlayer1}</td>
+								<td>{aciertosPlayer1}</td>
+							</tr>
+							<tr>
+								<td>Jugador 2</td>
+								<td>{scorePlayer2}</td>
+								<td>{aciertosPlayer2}</td>
+							</tr>
+						</tbody>
+					</table>
+{/* 					<div className="boton-girar">
+						<button onClick={handleGameFinished}>Terminar Juego</button>
+					</div> */}
 				</div>
-			</div>
-			<div className="player-info">
-				<img src={colorJugador} alt="Avatar del jugador" />
-				<p>{jugador}</p>
-			</div>
+				<div className="player-info">
+					<img src={colorJugador} alt="Avatar del jugador" />
+					<p>{jugador}</p>
+				</div>
 				<div className="container">
 					<div className="lista-dados">
 						<img src={dices[dice1]} className={rodando ? 'rotate' : ''} />
@@ -219,6 +219,10 @@ function App() {
 			<br></br>
 			<br></br>
 			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
 			<div className="page-container">
 				<div className="clquestions">
 					<div className="question-container">
@@ -226,19 +230,19 @@ function App() {
 					</div>
 					{question && (
 						<div className="options-container">
-							<button className ='boton-girar'
-							key={0}
-							onClick={() => handleAnswerQuestion(options[0])} disabled={buttonsDisabled}>
+							<button className='boton-girar'
+								key={0}
+								onClick={() => handleAnswerQuestion(options[0])} disabled={buttonsDisabled}>
 								{options[0]}
 							</button>
-							<button className ='boton-girar'
-							key={1}
-							onClick={() => handleAnswerQuestion(options[1])} disabled={buttonsDisabled}>
+							<button className='boton-girar'
+								key={1}
+								onClick={() => handleAnswerQuestion(options[1])} disabled={buttonsDisabled}>
 								{options[1]}
 							</button>
-							<button className ='boton-girar'
-							key={2}
-							onClick={() => handleAnswerQuestion(options[2])} disabled={buttonsDisabled}>
+							<button className='boton-girar'
+								key={2}
+								onClick={() => handleAnswerQuestion(options[2])} disabled={buttonsDisabled}>
 								{options[2]}
 							</button>
 						</div>

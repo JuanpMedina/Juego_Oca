@@ -233,280 +233,283 @@ class App extends React.Component {
     render() {
         return (
             <>
-                <Button color="success" onClick={() => this.mostrarModalInsertar()}>Crear nueva pregunta</Button>
-                <Container>
-                    <Table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Pregunta</th>
-                                <th>Respuesta Correcta</th>
-                                <th>Respuesta 1</th>
-                                <th>Respuesta 2</th>
-                                <th>Respuesta 3</th>
-                                <th>Tema</th>
-                                <th>Asignatura</th>
-                                <th>Dificultad</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.data.map((dato) => (
-                                <tr key={dato.id} className="editable-field"
-                                    onClick={() => this.mostrarModalEditar(dato)}>
-                                    <td>{dato.id}</td>
-                                    <td>{dato.pregunta}</td>
-                                    <td>{dato.respuestac}</td>
-                                    <td>{dato.respuesta1}</td>
-                                    <td>{dato.respuesta2}</td>
-                                    <td>{dato.respuesta3}</td>
-                                    <td>{dato.tema}</td>
-                                    <td>{dato.asignatura}</td>
-                                    <td>{dato.dificultad}</td>
+                <Button className="custom-button" color="success" onClick={() => this.mostrarModalInsertar()}>Crear nueva pregunta</Button>
+
+                <div className="Preguntascustom">
+                    <Container className="text-center">
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Pregunta</th>
+                                    <th>Respuesta Correcta</th>
+                                    <th>Respuesta 1</th>
+                                    <th>Respuesta 2</th>
+                                    <th>Respuesta 3</th>
+                                    <th>Tema</th>
+                                    <th>Asignatura</th>
+                                    <th>Dificultad</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                </Container>
-
-                <Modal isOpen={this.state.modalEditar}>
-                    <ModalHeader>
-                        <div>
-                            <h3>Editar Pregunta</h3>
-                        </div>
-                    </ModalHeader>
-                    <ModalBody>
-                        <FormGroup>
-                            <label className="names">ID:</label>
-                            <input
-                                className="form-control"
-                                readOnly
-                                type="text"
-                                value={this.state.form.id}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <label className="names">Pregunta:</label>
-                            <input
-                                className="form-control"
-                                name="pregunta"
-                                type="text"
-                                onChange={this.handleChange}
-                                value={this.state.form.pregunta}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <label className="names">Respuesta Correcta:</label>
-                            <input
-                                className="form-control"
-                                name="respuestac"
-                                type="text"
-                                onChange={this.handleChange}
-                                value={this.state.form.respuestac}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <label className="names">Respuesta 1:</label>
-                            <input
-                                className="form-control"
-                                name="respuesta1"
-                                type="text"
-                                onChange={this.handleChange}
-                                value={this.state.form.respuesta1}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <label className="names">Respuesta 2:</label>
-                            <input
-                                className="form-control"
-                                name="respuesta2"
-                                type="text"
-                                onChange={this.handleChange}
-                                value={this.state.form.respuesta2}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <label className="names">Respuesta 3:</label>
-                            <input
-                                className="form-control"
-                                name="respuesta3"
-                                type="text"
-                                onChange={this.handleChange}
-                                value={this.state.form.respuesta3}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <label className="names">Tema:</label>
-                            <input
-                                className="form-control"
-                                name="tema"
-                                type="text"
-                                onChange={this.handleChange}
-                                value={this.state.form.tema}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <label className="names">Asignatura:</label>
-                            <input
-                                className="form-control"
-                                name="asignatura"
-                                type="text"
-                                onChange={this.handleChange}
-                                value={this.state.form.asignatura}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <label className="names">Dificultad:</label>
-                            <input
-                                className="form-control"
-                                name="dificultad"
-                                type="text"
-                                onChange={this.handleChange}
-                                value={this.state.form.dificultad}
-                            />
-                        </FormGroup>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={() => this.editar(this.state.form)}>
-                            Guardar
-                        </Button>
-                        <Button color="danger" onClick={() => this.eliminar(this.state.form)}>Eliminar</Button>
-                    </ModalFooter>
-                </Modal>
-                <Modal isOpen={this.state.modalInsertar}>
-                    <ModalHeader>
-                        <div><h3>Insertar Pregunta</h3></div>
-                    </ModalHeader>
-
-                    <ModalBody>
-                        <FormGroup>
-                            <label className="names">
-                                Id:
-                            </label>
-
-                            <input
-                                className="form-control"
-                                readOnly
-                                type="text"
-                                value={this.state.data.length + 1}
-                            />
-                        </FormGroup>
-
-                        <FormGroup>
-                            <label className="names">
-                                Pregunta:
-                            </label>
-                            <input
-                                className="form-control"
-                                name="pregunta"
-                                type="text"
-                                onChange={this.handleChange}
-                            />
-                        </FormGroup>
-
-                        <FormGroup>
-                            <label className="names">
-                                Respuesta Correcta:
-                            </label>
-                            <input
-                                className="form-control"
-                                name="respuestac"
-                                type="text"
-                                onChange={this.handleChange}
-                            />
-                        </FormGroup>
-
-                        <FormGroup>
-                            <label className="names">
-                                Opcion 1:
-                            </label>
-                            <input
-                                className="form-control"
-                                name="respuesta1"
-                                type="text"
-                                onChange={this.handleChange}
-                            />
-                        </FormGroup>
-
-                        <FormGroup>
-                            <label className="names">
-                                Opcion 2:
-                            </label>
-                            <input
-                                className="form-control"
-                                name="respuesta2"
-                                type="text"
-                                onChange={this.handleChange}
-                            />
-                        </FormGroup>
-
-                        <FormGroup>
-                            <label className="names">
-                                Opcion 3:
-                            </label>
-                            <input
-                                className="form-control"
-                                name="respuesta3"
-                                type="text"
-                                onChange={this.handleChange}
-                            />
-                        </FormGroup>
-
-                        <FormGroup>
-                            <label className="names">
-                                Tematica:
-                            </label>
-                            <input
-                                className="form-control"
-                                name="tema"
-                                type="text"
-                                onChange={this.handleChange}
-                            />
-                        </FormGroup>
-
-                        <FormGroup>
-                            <label className="names">
-                                Asignatura:
-                            </label>
-                            <input
-                                className="form-control"
-                                name="asignatura"
-                                type="text"
-                                onChange={this.handleChange}
-                            />
-                        </FormGroup>
-
-                        <FormGroup>
-                            <label className="names">Dificultad:</label>
-                            <select
-                                className="form-control"
-                                name="dificultad"
-                                onChange={this.handleChange}
-                            >
-                                {this.state.opcionesDificultad.map((opcion) => (
-                                    <option key={opcion} value={opcion}>
-                                        {opcion}
-                                    </option>
+                            </thead>
+                            <tbody>
+                                {this.state.data.map((dato) => (
+                                    <tr key={dato.id} className="editable-field"
+                                        onClick={() => this.mostrarModalEditar(dato)}>
+                                        <td>{dato.id}</td>
+                                        <td>{dato.pregunta}</td>
+                                        <td>{dato.respuestac}</td>
+                                        <td>{dato.respuesta1}</td>
+                                        <td>{dato.respuesta2}</td>
+                                        <td>{dato.respuesta3}</td>
+                                        <td>{dato.tema}</td>
+                                        <td>{dato.asignatura}</td>
+                                        <td>{dato.dificultad}</td>
+                                    </tr>
                                 ))}
-                            </select>
-                        </FormGroup>
+                            </tbody>
+                        </Table>
+                    </Container>
 
-                    </ModalBody>
+                    <Modal isOpen={this.state.modalEditar}>
+                        <ModalHeader>
+                            <div>
+                                <h3>Editar Pregunta</h3>
+                            </div>
+                        </ModalHeader>
+                        <ModalBody>
+                            <FormGroup>
+                                <label className="names">ID:</label>
+                                <input
+                                    className="form-control"
+                                    readOnly
+                                    type="text"
+                                    value={this.state.form.id}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <label className="names">Pregunta:</label>
+                                <input
+                                    className="form-control"
+                                    name="pregunta"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    value={this.state.form.pregunta}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <label className="names">Respuesta Correcta:</label>
+                                <input
+                                    className="form-control"
+                                    name="respuestac"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    value={this.state.form.respuestac}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <label className="names">Respuesta 1:</label>
+                                <input
+                                    className="form-control"
+                                    name="respuesta1"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    value={this.state.form.respuesta1}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <label className="names">Respuesta 2:</label>
+                                <input
+                                    className="form-control"
+                                    name="respuesta2"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    value={this.state.form.respuesta2}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <label className="names">Respuesta 3:</label>
+                                <input
+                                    className="form-control"
+                                    name="respuesta3"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    value={this.state.form.respuesta3}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <label className="names">Tema:</label>
+                                <input
+                                    className="form-control"
+                                    name="tema"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    value={this.state.form.tema}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <label className="names">Asignatura:</label>
+                                <input
+                                    className="form-control"
+                                    name="asignatura"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    value={this.state.form.asignatura}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <label className="names">Dificultad:</label>
+                                <input
+                                    className="form-control"
+                                    name="dificultad"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    value={this.state.form.dificultad}
+                                />
+                            </FormGroup>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={() => this.editar(this.state.form)}>
+                                Guardar
+                            </Button>
+                            <Button color="danger" onClick={() => this.eliminar(this.state.form)}>Eliminar</Button>
+                        </ModalFooter>
+                    </Modal>
+                    <Modal isOpen={this.state.modalInsertar}>
+                        <ModalHeader>
+                            <div><h3>Insertar Pregunta</h3></div>
+                        </ModalHeader>
 
-                    <ModalFooter>
-                        <Button
-                            color="primary"
-                            onClick={() => this.insertar()}
-                        >
-                            Insertar
-                        </Button>
-                        <Button
-                            className="btn btn-danger"
-                            onClick={() => this.cerrarModalInsertar()}
-                        >
-                            Cancelar
-                        </Button>
-                    </ModalFooter>
-                </Modal>
+                        <ModalBody>
+                            <FormGroup>
+                                <label className="names">
+                                    Id:
+                                </label>
+
+                                <input
+                                    className="form-control"
+                                    readOnly
+                                    type="text"
+                                    value={this.state.data.length + 1}
+                                />
+                            </FormGroup>
+
+                            <FormGroup>
+                                <label className="names">
+                                    Pregunta:
+                                </label>
+                                <input
+                                    className="form-control"
+                                    name="pregunta"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                />
+                            </FormGroup>
+
+                            <FormGroup>
+                                <label className="names">
+                                    Respuesta Correcta:
+                                </label>
+                                <input
+                                    className="form-control"
+                                    name="respuestac"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                />
+                            </FormGroup>
+
+                            <FormGroup>
+                                <label className="names">
+                                    Opcion 1:
+                                </label>
+                                <input
+                                    className="form-control"
+                                    name="respuesta1"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                />
+                            </FormGroup>
+
+                            <FormGroup>
+                                <label className="names">
+                                    Opcion 2:
+                                </label>
+                                <input
+                                    className="form-control"
+                                    name="respuesta2"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                />
+                            </FormGroup>
+
+                            <FormGroup>
+                                <label className="names">
+                                    Opcion 3:
+                                </label>
+                                <input
+                                    className="form-control"
+                                    name="respuesta3"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                />
+                            </FormGroup>
+
+                            <FormGroup>
+                                <label className="names">
+                                    Tematica:
+                                </label>
+                                <input
+                                    className="form-control"
+                                    name="tema"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                />
+                            </FormGroup>
+
+                            <FormGroup>
+                                <label className="names">
+                                    Asignatura:
+                                </label>
+                                <input
+                                    className="form-control"
+                                    name="asignatura"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                />
+                            </FormGroup>
+
+                            <FormGroup>
+                                <label className="names">Dificultad:</label>
+                                <select
+                                    className="form-control"
+                                    name="dificultad"
+                                    onChange={this.handleChange}
+                                >
+                                    {this.state.opcionesDificultad.map((opcion) => (
+                                        <option key={opcion} value={opcion}>
+                                            {opcion}
+                                        </option>
+                                    ))}
+                                </select>
+                            </FormGroup>
+
+                        </ModalBody>
+
+                        <ModalFooter>
+                            <Button
+                                color="primary"
+                                onClick={() => this.insertar()}
+                            >
+                                Insertar
+                            </Button>
+                            <Button
+                                className="btn btn-danger"
+                                onClick={() => this.cerrarModalInsertar()}
+                            >
+                                Cancelar
+                            </Button>
+                        </ModalFooter>
+                    </Modal>
+                </div>
             </>
         );
     }

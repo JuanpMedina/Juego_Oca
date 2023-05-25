@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { auth } from '../../firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
     Avatar,
     Button,
@@ -44,6 +46,7 @@ export default function SignIn() {
     const classes = useStyles();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -55,8 +58,16 @@ export default function SignIn() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log('holi')
+        signInWithEmailAndPassword(auth, email, password)
+            .then(userCredentials => {
+                //aca routeo al navbar 
+                console.log(userCredentials)
+                navigate("/navbar"); // Redirige a la ruta "/navbar"
+            })
         // Enviar datos de inicio de sesión a la base de datos
     };
+
 
     return (
         <Container component="main" maxWidth="xs">
@@ -105,8 +116,8 @@ export default function SignIn() {
                     <Button
                         type="submit"
                         fullWidth
-                        component={RouterLink}
-                        to="/navbar"
+                        // component={RouterLink}
+                        // to="/navbar"
                         variant="contained"
                         color="primary"
                         className={classes.submit}

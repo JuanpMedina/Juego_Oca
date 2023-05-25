@@ -9,6 +9,15 @@ body {
     justify-content: center;
 }
 
+.icon-container {
+    display: flex;
+    justify-content: center;
+}
+
+.iconos {
+    margin: 0 10px;
+}
+
 .iconos {
     font-size: 40px; /* Tamaño deseado para el icono */
     color: black;

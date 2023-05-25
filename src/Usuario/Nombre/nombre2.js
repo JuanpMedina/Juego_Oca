@@ -7,9 +7,12 @@ import { faDice } from '@fortawesome/free-solid-svg-icons';
 function pin() {
     return (
         <div>
-            <FontAwesomeIcon icon={faGamepad} className='iconos'/> <FontAwesomeIcon icon={faDice} className='iconos'/>
-            <br></br>
-            <br></br>
+            <div className="icon-container">
+                <FontAwesomeIcon icon={faGamepad} className='iconos' />
+                <FontAwesomeIcon icon={faDice} className='iconos' />
+            </div>
+            <br />
+            <br />
             <h1 className='tit'>Juego de la Oca</h1>
             <div className="card">
                 <div className="card-body">

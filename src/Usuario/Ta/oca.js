@@ -136,84 +136,92 @@ function App() {
 
 	return (
 		<div>
-			<h1 className='titulito'>Juego de la Oca</h1>
-			<div className="score-table">
-				<table>
-					<thead>
-						<tr>
-							<th>Jugador</th>
-							<th>Puntaje</th>
-							<th>Aciertos</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Jugador 1</td>
-							<td>{scorePlayer1}</td>
-							<td>{aciertosPlayer1}</td>
-						</tr>
-						<tr>
-							<td>Jugador 2</td>
-							<td>{scorePlayer2}</td>
-							<td>{aciertosPlayer2}</td>
-						</tr>
-					</tbody>
-				</table>
-				<div className="boton-girar">
-					<button onClick={handleGameFinished}>Terminar Juego</button>
-				</div>
-			</div>
-			<div className="player-info">
-				<img src={'logo512.png'} alt="Avatar del jugador" />
-				<p>{jugador}</p>
-			</div>
-
-			<div className="container">
-				<div className="lista-dados">
-					<img src={dices[dice1]} className={rodando ? 'rotate' : ''} />
-					<img src={dices[dice2]} className={rodando ? 'rotate' : ''} />
+			<div>
+				<h1 className='titulito'>Juego de la Oca</h1>
+				<div className="score-table">
+					<table>
+						<thead>
+							<tr>
+								<th>Jugador</th>
+								<th>Puntaje</th>
+								<th>Aciertos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Jugador 1</td>
+								<td>{scorePlayer1}</td>
+								<td>{aciertosPlayer1}</td>
+							</tr>
+							<tr>
+								<td>Jugador 2</td>
+								<td>{scorePlayer2}</td>
+								<td>{aciertosPlayer2}</td>
+							</tr>
+						</tbody>
+					</table>
 					<div className="boton-girar">
-						<button className="button-roll" onClick={handleRollDice}>LANZAR</button>
+						<button onClick={handleGameFinished}>Terminar Juego</button>
 					</div>
 				</div>
-			</div>
-			<div className="board">
-				{Array.from({ length: 63 }, (_, i) => i + 1).map((number) => {
-					return renderSquare(number, number);
-				})}
-			</div>
-			<div>
-				{isGameFinished && (
-					<div className="game-finished">
-						<div className="game-finished-alert">
-							<h1>Juego Terminado!</h1>
-							<h1 className='textscore'>El puntaje del participante 1: {scorePlayer1}</h1>
-							<h1 className='textscore'>El puntaje del participante 2: {scorePlayer2}</h1>
+				<div className="player-info">
+					<img src={'logo512.png'} alt="Avatar del jugador" />
+					<p>{jugador}</p>
+				</div>
+
+				<div className="container">
+					<div className="lista-dados">
+						<img src={dices[dice1]} className={rodando ? 'rotate' : ''} />
+						<img src={dices[dice2]} className={rodando ? 'rotate' : ''} />
+						<div className="boton-girar">
+							<button className="button-roll" onClick={handleRollDice}>LANZAR</button>
 						</div>
 					</div>
-				)}
-			</div>
-			<div>
-				{mostrarJuegoFinalizado && (
-					<div className="game-finished">
-						<div className="game-finished-alert">
-							<h1>Aciertos por persona</h1>
-							<h1 className='textscore'>Los aciertos del participante 1: {aciertosPlayer1}</h1>
-							<h1 className='textscore'>Los aciertos del participante 2: {aciertosPlayer2}</h1>
+				</div>
+				<div className="board">
+					{Array.from({ length: 63 }, (_, i) => i + 1).map((number) => {
+						return renderSquare(number, number);
+					})}
+				</div>
+				<div>
+					{isGameFinished && (
+						<div className="game-finished">
+							<div className="game-finished-alert">
+								<h1>Juego Terminado!</h1>
+								<h1 className='textscore'>El puntaje del participante 1: {scorePlayer1}</h1>
+								<h1 className='textscore'>El puntaje del participante 2: {scorePlayer2}</h1>
+							</div>
 						</div>
-					</div>
-				)}
-			</div>
-			<div>
-				{gameFinished && (
-					<div className="game-finished">
-						<div className="game-finished-alert">
-							<h1>Juego Terminado!</h1>
-							<button className='btnmarcador' onClick={() => setIsGameFinished(false)}>Mostrar Marcador</button>
+					)}
+				</div>
+				<div>
+					{mostrarJuegoFinalizado && (
+						<div className="game-finished">
+							<div className="game-finished-alert">
+								<h1>Aciertos por persona</h1>
+								<h1 className='textscore'>Los aciertos del participante 1: {aciertosPlayer1}</h1>
+								<h1 className='textscore'>Los aciertos del participante 2: {aciertosPlayer2}</h1>
+							</div>
 						</div>
-					</div>
-				)}
+					)}
+				</div>
+				<div>
+					{gameFinished && (
+						<div className="game-finished">
+							<div className="game-finished-alert">
+								<h1>Juego Terminado!</h1>
+								<button className='btnmarcador' onClick={() => setIsGameFinished(false)}>Mostrar Marcador</button>
+							</div>
+						</div>
+					)}
+				</div>
 			</div>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
 			<div className="page-container">
 				<div className="clquestions">
 					<div className="question-container">

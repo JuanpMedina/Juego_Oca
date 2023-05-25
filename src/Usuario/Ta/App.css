@@ -1,17 +1,74 @@
 .container {
     display: flex;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px 0px;
+    grid-template-areas:
+        "lista-dados lista-dados"
+        "boton-girar boton-girar";
+    left: 0;
     flex-direction: row;
-    /* cambiar de column a row */
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-family: sans-serif;
-    margin-top: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /*display: flex;
+    flex-direction: row;
+    /* Cambiar de "row" a "column" para alinear verticalmente 
+    justify-content: flex-start;
+    align-items: center;
+    /* Cambiar "center" a "flex-start" para alinear a la izquierda 
+    font-family: sans-serif;
+    margin-top: 50px;*/
+}
+
+.lista-dados {
+    grid-area: lista-dados;
+}
+
+.lista-dados>img {
+    padding: 20px;
+}
+
+.boton-girar {
+    grid-area: boton-girar;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton-girar>button {
+    font-size: 20px;
+    border-radius: 20px;
+    width: 100%;
+    background-color: #a5d6ce;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.boton-girar>button:active,
+.boton-girar>button:focus {
+    transform: translateY(2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    ;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.boton-girar>button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.16);
+    background-color: rgb(60, 167, 209);
 }
 
 h1 {
-    text-align: center;
-    font-size: 50px;
-    margin-bottom: 30px;
+    text-align: fixed;
+    /* font-size: 50px;
+    margin-bottom: 30px; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .textscore {
@@ -30,7 +87,12 @@ h1 {
 
 
 .titulito {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     margin-right: 100px;
+    margin-top: 50px;
 }
 
 .acierticos {
@@ -54,11 +116,15 @@ h1 {
     grid-template-columns: repeat(9, 50px);
     grid-template-rows: repeat(7, 50px);
     gap: 2px;
-    background-color: #fcf6b1;
+    background-color: #a5d6ce;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 30px !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
 }
 
 .question {
@@ -120,30 +186,6 @@ h1 {
     color: white;
 }
 
-.dice-conta {
-    display: flex;
-    justify-content: center;
-}
-
-.dice-container {
-    display: flex;
-    justify-content: center;
-}
-
-.dice {
-    font-size: 20px;
-    font-weight: bold;
-    background-color: black;
-    border: none;
-    border-radius: 10px;
-    margin: 20px;
-    text-align: center;
-    padding: 20px 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-
 .game-finished {
     position: fixed;
     top: 0;
@@ -168,6 +210,9 @@ h1 {
 
 .btnpregunta {
     margin: 5px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btnmarcador {
@@ -177,14 +222,161 @@ h1 {
 }
 
 
-.dice:hover {
-    cursor: pointer;
-    background-color: black;
-}
-
 @media screen and (max-width: 500px) {
     .board {
         grid-template-columns: repeat(7, 50px);
         grid-template-rows: repeat(9, 50px);
     }
 }
+
+.dice-container {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-table {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+}
+
+.score-table table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.score-table th {
+    font-weight: bold;
+    background-color: #a5d6ce;
+    color: black;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.score-table th,
+.score-table td {
+    padding: 5px;
+    text-align: center;
+}
+
+.lista-dados {
+    grid-area: lista-dados;
+}
+
+.lista-dados>img {
+    padding: 20px;
+}
+
+.boton-girar {
+    grid-area: boton-girar;
+}
+
+.boton-girar>button {
+    font-size: 20px;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(-360deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: rotate(0);
+        opacity: 1;
+    }
+}
+
+.rotate {
+    animation: rotate 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.clquestions {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.question-container {
+    background-color: #a5d6ce;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: black
+}
+
+.options-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.options-container>button {
+    font-size: 20px;
+    border-radius: 20px;
+    width: 100%;
+    background-color: #a5d6ce;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.options-container>button:active,
+.options-container>button:focus {
+    transform: translateY(2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    ;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.options-container>button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.16);
+    background-color: rgb(60, 167, 209);
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 20px; /* Ajusta el valor según sea necesario */
+    transform: translateY(-50%);
+  }
+  
+  .player-info img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  
+  .player-info p {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
+  

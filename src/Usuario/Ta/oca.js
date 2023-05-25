@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { questions } from './questions';
 import './App.css';
 
 function App() {
 	const [players, setPlayers] = useState([0, 0]);
 	const [currentPlayer, setCurrentPlayer] = useState(0);
-	const [dice1, setDice1] = useState(1);
-	const [dice2, setDice2] = useState(1);
+	const [dice1, setDice1] = useState(0);
+	const [dice2, setDice2] = useState(0);
 	const [isGameFinished, setIsGameFinished] = useState(false);
 	const [usedQuestions, setUsedQuestions] = useState([]);
 	const [gameFinished, setGameFinished] = useState(false);
@@ -17,18 +17,35 @@ function App() {
 	const [aciertosPlayer1, setAciertosPlayer1] = useState(0);
 	const [aciertosPlayer2, setAciertosPlayer2] = useState(0);
 	const [mostrarJuegoFinalizado, setMostrarJuegoFinalizado] = useState(false);
+	const [rodando, setRodando] = useState(false);
+	const [buttonsDisabled, setButtonsDisabled] = useState(false);
+
+	const dices = [
+		'dice1.png',
+		'dice2.png',
+		'dice3.png',
+		'dice4.png',
+		'dice5.png',
+		'dice6.png'
+	]
+
+	let jugador = currentPlayer === 0 ? "Jugador 1" : "Jugador 2"
 
 	const handleGameFinished = () => {
 		setIsGameFinished(true);
 		setUsedQuestions([]);
 	};
 
-	const handleRollDice = () => {
+	const handleRollDice = useCallback(() => {
+		setRodando(true);
 		// Generar un nuevo par de dados
-		const d1 = Math.floor(Math.random() * 6) + 1;
-		const d2 = Math.floor(Math.random() * 6) + 1;
+		const d1 = Math.floor(Math.random() * 5) + 1;
+		const d2 = Math.floor(Math.random() * 5) + 1;
 		setDice1(d1);
 		setDice2(d2);
+		setTimeout(() => {
+			setRodando(false);
+		}, 500);
 
 		// Seleccionar una pregunta aleatoria que no haya sido utilizada previamente
 		let randomQuestion;
@@ -42,11 +59,14 @@ function App() {
 
 		// Agregar la pregunta utilizada al arreglo de preguntas utilizadas
 		setUsedQuestions([...usedQuestions, randomQuestion]);
-	};
+
+		setButtonsDisabled(false);
+	});
 
 	const handleAnswerQuestion = (answer) => {
 		const currentQuestion = questions.find((q) => q.question === question);
 		const correctAnswer = currentQuestion.answer;
+		setButtonsDisabled(true);
 
 		if (answer === correctAnswer) {
 			if (currentPlayer === 0) {
@@ -56,13 +76,16 @@ function App() {
 				setScorePlayer2(scorePlayer2 + 2);
 				setAciertosPlayer2(aciertosPlayer2 + 1);
 			}
-			movePlayer(currentPlayer, dice1 + dice2);
+			movePlayer(currentPlayer, (dice1 + dice2) + 2);
 		} else {
 			movePlayer(currentPlayer, -2); // Se resta 2 casillas en caso de respuesta incorrecta
 			setCurrentPlayer(currentPlayer === 0 ? 1 : 0);
 		}
-		setUsedQuestions([]);
-		setQuestion("");
+		jugador = currentPlayer === 0 ? "Jugador 1" : "Jugador 2"
+
+
+		//setUsedQuestions([]);
+		//setQuestion("");
 	};
 
 
@@ -114,24 +137,50 @@ function App() {
 	return (
 		<div>
 			<h1 className='titulito'>Juego de la Oca</h1>
+			<div className="score-table">
+				<table>
+					<thead>
+						<tr>
+							<th>Jugador</th>
+							<th>Puntaje</th>
+							<th>Aciertos</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Jugador 1</td>
+							<td>{scorePlayer1}</td>
+							<td>{aciertosPlayer1}</td>
+						</tr>
+						<tr>
+							<td>Jugador 2</td>
+							<td>{scorePlayer2}</td>
+							<td>{aciertosPlayer2}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div className="boton-girar">
+					<button onClick={handleGameFinished}>Terminar Juego</button>
+				</div>
+			</div>
+			<div className="player-info">
+				<img src={'logo512.png'} alt="Avatar del jugador" />
+				<p>{jugador}</p>
+			</div>
+
 			<div className="container">
-				<div className="dice-container">
-					<button className="dice" onClick={handleRollDice}>
-						{dice1}
-					</button>
-					<button className="dice" onClick={handleRollDice}>
-						{dice2}
-					</button>
+				<div className="lista-dados">
+					<img src={dices[dice1]} className={rodando ? 'rotate' : ''} />
+					<img src={dices[dice2]} className={rodando ? 'rotate' : ''} />
+					<div className="boton-girar">
+						<button className="button-roll" onClick={handleRollDice}>LANZAR</button>
+					</div>
 				</div>
-				<div className="board">
-					{Array.from({ length: 63 }, (_, i) => i + 1).map((number) => {
-						return renderSquare(number, number);
-					})}
-				</div>
-				<div className="dice-container">
-					<button className="dice" onClick={handleClick}> Aciertos </button>
-					<button className="dice" onClick={handleGameFinished}>Terminar Juego</button>
-				</div>
+			</div>
+			<div className="board">
+				{Array.from({ length: 63 }, (_, i) => i + 1).map((number) => {
+					return renderSquare(number, number);
+				})}
 			</div>
 			<div>
 				{isGameFinished && (
@@ -165,20 +214,27 @@ function App() {
 					</div>
 				)}
 			</div>
-			<div className="clquestions">
-				{question && (
+			<div className="page-container">
+				<div className="clquestions">
 					<div className="question-container">
-						<h3 className="question">{question}</h3>
-						{options.map((option, index) => (
-							<button className='btnpregunta' key={index} onClick={() => handleAnswerQuestion(option)}>
-								{option}
-							</button>
-						))}
+						<h3>{question}</h3>
 					</div>
-				)}
-				<br></br>
-				<br></br>
+					{question && (
+						<div className="options-container">
+							<button className='boton-girar' key={0} onClick={() => handleAnswerQuestion(options[0])} disabled={buttonsDisabled}>
+								{options[0]}
+							</button>
+							<button className='boton-girar' key={1} onClick={() => handleAnswerQuestion(options[1])} disabled={buttonsDisabled}>
+								{options[1]}
+							</button>
+							<button className='boton-girar' key={2} onClick={() => handleAnswerQuestion(options[2])} disabled={buttonsDisabled}>
+								{options[2]}
+							</button>
+						</div>
+					)}
+				</div>
 			</div>
+
 		</div>
 
 	);
